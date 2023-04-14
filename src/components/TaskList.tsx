@@ -7,14 +7,14 @@ import { useState } from 'react';
 interface TaskProps {
     content: string;
     onDeleteComment: (comment: string) => void;
-    //onHandleLiked: (LikeCount: number) => 0;
-    //setIsChecked: (insChecked: boolean)=>false
+    onHandleLiked: (LikeCount: number) => 0;
+    setIsChecked: (insChecked: boolean)=>false
     
   
     
 }
 
-export function TaskList({content, onDeleteComment, /*onHandleLiked, setIsChecked*/}:TaskProps){
+export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}:TaskProps){
     
     function handleDeleteComment(){
         onDeleteComment(content);
@@ -29,15 +29,15 @@ export function TaskList({content, onDeleteComment, /*onHandleLiked, setIsChecke
     const [likeCount] = useState(0); 
 
     function handleLikeCount(){
-       //onHandleLiked(likeCount)
+       onHandleLiked(likeCount)
        IsChecked(!isChecked);
       
            
     }
 
-    function handleChangeCheck(){//Não está em uso
+    /*function handleChangeCheck(){//Não está em uso
         IsChecked(!isChecked);
-    }
+    }*/
 
    
 
@@ -71,6 +71,7 @@ export function TaskList({content, onDeleteComment, /*onHandleLiked, setIsChecke
                 className={style.checkmark}
                 checked={isChecked}
                 onChange={handleLikeCount}
+                value={1}
                 />
                 <span className={style.checkmark}></span>
                 </label>
@@ -81,7 +82,7 @@ export function TaskList({content, onDeleteComment, /*onHandleLiked, setIsChecke
                  <button onClick={handleDeleteComment} title="Deletar comentário" >
                         <Trash size={24} />
                     </button>
-                </div>{ likeCount }
+                </div>
                 
             </div>
 
