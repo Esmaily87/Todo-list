@@ -7,14 +7,14 @@ import { useState } from 'react';
 interface TaskProps {
     content: string;
     onDeleteComment: (comment: string) => void;
-    onHandleLiked: (LikeCount: number) => 0;
-    setIsChecked: (insChecked: boolean)=>false
+    //onHandleLiked: (LikeCount: number) => 0;
+    //setIsChecked: (insChecked: boolean)=>false
     
   
     
 }
 
-export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}:TaskProps){
+export function TaskList({content, onDeleteComment, /*onHandleLiked, setIsChecked*/}:TaskProps){
     
     function handleDeleteComment(){
         onDeleteComment(content);
@@ -29,7 +29,7 @@ export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}
     const [likeCount] = useState(0); 
 
     function handleLikeCount(){
-       onHandleLiked(likeCount)
+       //onHandleLiked(likeCount)
        IsChecked(!isChecked);
       
            
