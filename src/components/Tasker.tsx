@@ -113,7 +113,7 @@ export function Tasker(){
             content={comment}
             onDeleteComment={ deleteComment }
             //onHandleLiked={taskMonitor}
-            //setIsChecked={taskChecker}
+            //setIsChecked={taskChecker} lk
             
             />
             
