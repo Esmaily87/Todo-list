@@ -5,16 +5,14 @@ import { useState } from 'react';
 
 
 interface TaskProps {
+    key: string;
     content: string;
     onDeleteComment: (comment: string) => void;
-    onHandleLiked: (LikeCount: number) => 0;
-    setIsChecked: (insChecked: boolean)=>false
-    
+    isComplete: (comment: Boolean) => void;
   
-    
 }
 
-export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}:TaskProps){
+export function TaskList({content, onDeleteComment, isComplete}:TaskProps){
     
     function handleDeleteComment(){
         onDeleteComment(content);
@@ -22,43 +20,32 @@ export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}
 
     
     
-    const [isChecked, IsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(Boolean);
     
-     
+    
 
-    const [likeCount] = useState(0); 
+    function handleOnChange(){
+       
+       setIsChecked(!isChecked);
 
-    function handleLikeCount(){
-       onHandleLiked(likeCount)
-       IsChecked(!isChecked);
+       isComplete(isChecked)
+       
+       console.log(isChecked)
+
+       
+       
       
-           
+       
     }
 
-    /*function handleChangeCheck(){//Não está em uso
-        IsChecked(!isChecked);
-    }*/
-
-   
-
-
-    
-
-  
     
     
-   
+
+    
+    
     return (
       
         <span>
-            
-             
-
-            {/*<div className={ style.todolist }>
-            <ListChecks size={56} />
-                <div id='todoempty' className={ style.todoempty }>Você ainda não tem tarefas cadastradas </div>
-                <div id='todoempty'className={ style.todoempty_2 }>Crie tarefas e organize itens a fazer</div>
-            </div> */}
             
             <div className={ style.todo }>
 
@@ -70,8 +57,8 @@ export function TaskList({content, onDeleteComment, onHandleLiked, setIsChecked}
                 type="checkbox" 
                 className={style.checkmark}
                 checked={isChecked}
-                onChange={handleLikeCount}
-                value={1}
+                onChange={handleOnChange}
+                
                 />
                 <span className={style.checkmark}></span>
                 </label>

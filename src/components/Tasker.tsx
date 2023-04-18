@@ -16,8 +16,8 @@ export function Tasker(){
     function handleCreateNewComment(event: FormEvent){
         event.preventDefault()
         setComments([...comments, newCommentText]);
-        const contarTarefas = new Array(comments.length).fill(true)
-        console.log(contarTarefas)
+        /*const contarTarefas = new Array(comments.length).fill(true)
+        console.log(contarTarefas)*/
        
         setNewCommentText('');
                
@@ -36,75 +36,27 @@ export function Tasker(){
          setComments(commentsWithOutDeletedOne);
     }
 
-    const [checkTask, setCheckTask] = useState(0);
-       function taskMonitor(){
+    /*function getCheck(checkTocheck: boolean) {
+      const checkOne = comments.filter(comment => {
+          return comment !== commentToDelete;
+      })
+       setComments(commentsWithOutDeletedOne);
+  }*/
 
-            setCheckTask((checkTask) => {
-            
-            return checkTask = 1
-        });
-    }
-
+    
    
     const commentsForCount = comments.length -1
-    //const isNewCommentInputEmpty = newCommentText.length === 0;
 
-   // const [isChecked, setIsChecked] = useState(false);
+    const contarTarefas = new Array(comments.length).fill(true)
+        console.log(contarTarefas)
 
-    /*const handleOnChange = () => {
-      setIsChecked(!isChecked);
-    };*/
-
-    /*const [checkedState, setCheckedState] = useState(
-        new Array(toppings.length).fill(false)
-    );*/
-
-    const [checkedState, setCheckedState] = useState(
-        //new Array(comments.length).fill(false)
-        
-      );
-    /*function countTrue(){
-        setCheckedState((checkedState) => 
-        {
-            return checkedState = new Array(comments.length).fill(false)
-        });
-    }*/
-    //const contarTarefas = new Array(comments.length).fill(true)
-    
-    
-      /*const [total, setTotal] = useState(0);
-    
-      const handleOnChange = (position: number) => {// alterado position para number
-        const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
-        );
-    
-        setCheckedState(updatedCheckedState);
-    
-        const totalPrice = updatedCheckedState.reduce(
-          (sum, currentState, index) => {
-            if (currentState === true) {
-              return sum + comments[index];
-            }
-            return sum;
-          },
-          0
-        );
-    
-        setTotal(totalPrice);
-        
-      };*/
-      
-    
+   
+    //comments.filter(task => task.isComplete).length
 
 
-
-
-
-    
-
-
-
+    function commentsFinish (){
+      return true
+    }
 
    return( 
         <div>
@@ -134,7 +86,7 @@ export function Tasker(){
 
                     <div  className={ style.tasksendeds }>
                     Concluídas
-                    <div className={ style.countertasksends }>{checkTask}</div>                
+                    <div className={ style.countertasksends }>{}</div>                
                     </div>
 
                
@@ -150,8 +102,9 @@ export function Tasker(){
             key={comment}
             content={comment}
             onDeleteComment={ deleteComment }
-            onHandleLiked={taskMonitor}
-            //setIsChecked={taskChecker}
+            isComplete={commentsFinish}
+            //isComplete={getCheck}
+           
             
             />
             
@@ -162,35 +115,6 @@ export function Tasker(){
 
 
 
-       { /*<h3>Select Toppings</h3>
-      <ul className="toppings-list">
-        {toppings.map(({ name, price }, index) => {
-          return (
-            <li key={index}>
-              <div className="toppings-list-item">
-                <div className="left-section">
-                  <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={name}
-                    checked={checkedState[index]}
-                    onChange={() => handleOnChange(index)}
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                </div>
-                <div className="right-section">{getFormattedPrice(price)}</div>
-              </div>
-            </li>
-          );
-        })}
-        <li>
-          <div className="toppings-list-item">
-            <div className="left-section">Total:</div>
-            <div className="right-section">{getFormattedPrice(total)}</div>
-          </div>
-        </li>
-    </ul> */}
         </div>
     
         
