@@ -8,7 +8,7 @@ interface TaskProps {
     key: string;
     content: string;
     onDeleteComment: (comment: string) => void;
-    isComplete: (comment: Boolean) => void;
+    isComplete: (comment: Boolean) => boolean;
   
 }
 
@@ -30,7 +30,7 @@ export function TaskList({content, onDeleteComment, isComplete}:TaskProps){
 
        isComplete(isChecked)
        
-       console.log(isChecked)
+       //console.log(isChecked)
 
        
        

@@ -1,7 +1,7 @@
 import style from './Tasker.module.css'
 import { PlusCircle } from 'phosphor-react';
 import { TaskList } from './TaskList';
-import { FormEvent, useState, ChangeEvent, InvalidEvent } from 'react';
+import { FormEvent, useState, ChangeEvent, InvalidEvent, HTMLInputTypeAttribute } from 'react';
 
 
 export function Tasker(){
@@ -16,9 +16,6 @@ export function Tasker(){
     function handleCreateNewComment(event: FormEvent){
         event.preventDefault()
         setComments([...comments, newCommentText]);
-        /*const contarTarefas = new Array(comments.length).fill(true)
-        console.log(contarTarefas)*/
-       
         setNewCommentText('');
                
     }
@@ -46,17 +43,38 @@ export function Tasker(){
     
    
     const commentsForCount = comments.length -1
+    const TaskForCount = comments.length -1
 
-    const contarTarefas = new Array(comments.length).fill(true)
-        console.log(contarTarefas)
+    /*const contarTarefas = new Array(comments.length).fill(true)
+        console.log(contarTarefas)*/
 
    
     //comments.filter(task => task.isComplete).length
 
+    /*const [newCommentText, setNewCommentText] = useState('')
 
-    function commentsFinish (){
-      return true
+    function handleNewCommentChange(event: ChangeEvent<HTMLInputElement> ) {
+        event.target.setCustomValidity('');
+       setNewCommentText(event.target.value);
+    
+    }*/
+
+    const [task, setTask] = useState([Boolean])
+    function commentsFinish (event: HTMLInputElement){
+        const setTask = event
+       
+        
+        console.log(setTask)
+        return setTask
+
     }
+    /*const [tasks, setTasks] = useState()
+    const contarTarefas = new Array(comments.length).fill(true)
+        console.log(contarTarefas)*/
+    //const [tasks, setTasks] = useState(initialData)
+
+    //tasks.filter(task => task.isCompleted).length
+    
 
    return( 
         <div>
@@ -86,7 +104,7 @@ export function Tasker(){
 
                     <div  className={ style.tasksendeds }>
                     Concluídas
-                    <div className={ style.countertasksends }>{}</div>                
+                    <div className={ style.countertasksends }></div>                
                     </div>
 
                
