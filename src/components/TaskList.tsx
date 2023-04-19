@@ -8,7 +8,7 @@ interface TaskProps {
     key: string;
     content: string;
     onDeleteComment: (comment: string) => void;
-    isComplete: (comment: Boolean) => boolean;
+    isComplete: (task: Boolean) => Boolean;
   
 }
 

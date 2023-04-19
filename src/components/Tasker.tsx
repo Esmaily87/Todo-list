@@ -17,13 +17,14 @@ export function Tasker(){
         event.preventDefault()
         setComments([...comments, newCommentText]);
         setNewCommentText('');
+       
                
     }
 
     function handleNewCommentChange(event: ChangeEvent<HTMLInputElement> ) {
         event.target.setCustomValidity('');
        setNewCommentText(event.target.value);
-    
+      
     }
 
     function deleteComment(commentToDelete: string) {
@@ -33,48 +34,46 @@ export function Tasker(){
          setComments(commentsWithOutDeletedOne);
     }
 
-    /*function getCheck(checkTocheck: boolean) {
-      const checkOne = comments.filter(comment => {
-          return comment !== commentToDelete;
-      })
-       setComments(commentsWithOutDeletedOne);
-  }*/
-
     
    
     const commentsForCount = comments.length -1
-    const TaskForCount = comments.length -1
-
-    /*const contarTarefas = new Array(comments.length).fill(true)
-        console.log(contarTarefas)*/
-
-   
-    //comments.filter(task => task.isComplete).length
-
-    /*const [newCommentText, setNewCommentText] = useState('')
-
-    function handleNewCommentChange(event: ChangeEvent<HTMLInputElement> ) {
-        event.target.setCustomValidity('');
-       setNewCommentText(event.target.value);
     
+
+    const [task, setTask] = useState("")
+    
+    function TaskFinish (checked: Boolean){
+        const setmyTask = checked;
+        setTask(setmyTask.toString())
+        const contarTarefas = new Array(setTask.length).fill(setmyTask)
+        console.log(contarTarefas+"2")
+        console.log(setmyTask+"3")
+        return setmyTask
+
+    }
+
+    /*const [task, setTask] = useState(Boolean)
+
+    function TaskFinish (checked: HTMLInputElement){
+        const setmyTask = checked;
+        setTask(setmyTask)
+        const contarTarefas = new Array(setTask.length).fill(task)
+        console.log(contarTarefas)
+        console.log(setmyTask)
+        return setmyTask
+
     }*/
 
-    const [task, setTask] = useState([Boolean])
-    function commentsFinish (event: HTMLInputElement){
-        const setTask = event
+    /*const [task, setTask] = useState([Boolean])
+    function TaskFinish (event: HTMLInputElement){
+        const setmyTask = event
+        setTask(setmyTask)
        
         
         console.log(setTask)
         return setTask
 
-    }
-    /*const [tasks, setTasks] = useState()
-    const contarTarefas = new Array(comments.length).fill(true)
-        console.log(contarTarefas)*/
-    //const [tasks, setTasks] = useState(initialData)
-
-    //tasks.filter(task => task.isCompleted).length
-    
+    }*/
+   
 
    return( 
         <div>
@@ -104,7 +103,7 @@ export function Tasker(){
 
                     <div  className={ style.tasksendeds }>
                     Concluídas
-                    <div className={ style.countertasksends }></div>                
+                    <div className={ style.countertasksends }>{task}</div>                
                     </div>
 
                
@@ -120,10 +119,7 @@ export function Tasker(){
             key={comment}
             content={comment}
             onDeleteComment={ deleteComment }
-            isComplete={commentsFinish}
-            //isComplete={getCheck}
-           
-            
+            isComplete={TaskFinish}
             />
             
             )
