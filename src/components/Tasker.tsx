@@ -45,8 +45,8 @@ export function Tasker(){
         const setmyTask = checked;
         setTask(setmyTask.toString())
         const contarTarefas = new Array(setTask.length).fill(setmyTask)
-        console.log(contarTarefas+"2")
-        console.log(setmyTask+"3")
+        console.log(contarTarefas)
+        console.log(setmyTask)
         return setmyTask
 
     }
