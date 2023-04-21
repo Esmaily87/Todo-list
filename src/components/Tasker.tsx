@@ -4,18 +4,28 @@ import { TaskList } from './TaskList';
 import { FormEvent, useState, ChangeEvent, InvalidEvent, HTMLInputTypeAttribute } from 'react';
 
 
-export function Tasker(){
 
-    const [comments, setComments ]= useState([
-        ''//perguntar com solucionar isso sem gerar um novo post e sem a necessidade de usar firstchild no css.
+export function Tasker(){
+    const initialData = [
+        {
+            id: 'id-aleatorio1',
+            title: 'Task 1',
+            isCompleted: false // Essa não está concluída
+        },
         
-    ] )
+    ]
+
+    const [tasks, setTasks ]= useState(initialData)
     
     const [newCommentText, setNewCommentText] = useState('')
   
     function handleCreateNewComment(event: FormEvent){
         event.preventDefault()
-        setComments([...comments, newCommentText]);
+        setTasks(tasks => [...tasks, {
+            id: Math.random().toString(), // Gera um ID aleatório de uma forma não muito recomendada, mas vai servir por enquanto
+            isCompleted: false, // Inicia o isCompleted como false
+            title: newCommentText
+        }]);
         setNewCommentText('');
        
                
@@ -27,53 +37,42 @@ export function Tasker(){
       
     }
 
-    function deleteComment(commentToDelete: string) {
-        const commentsWithOutDeletedOne = comments.filter(comment => {
-            return comment !== commentToDelete;
+    function deleteComment(id: string) {
+        const tasksWithOutDeletedOne = tasks.filter( task => {
+            return task.id !== id;
         })
-         setComments(commentsWithOutDeletedOne);
+         setTasks(tasksWithOutDeletedOne);
     }
 
     
    
-    const commentsForCount = comments.length -1
+    const tasksForCount = tasks.length
     
 
     const [task, setTask] = useState("")
     
-    function TaskFinish (checked: Boolean){
-        const setmyTask = checked;
-        setTask(setmyTask.toString())
-        const contarTarefas = new Array(setTask.length).fill(setmyTask)
-        console.log(contarTarefas)
-        console.log(setmyTask)
-        return setmyTask
+    function TaskFinish (id: string){
+         // Faz um map de todas as tasks, para criar um novo array
+    const editedCompletedTask = tasks.map(task => {
+        // Caso o ID da task seja igual ao id clicado:
+        if (task.id === id) {
+            // Retorna todos os itens da task, mas invertemos o valor do isCompleted
+            return {
+                ...task,
+                isCompleted: !task.isCompleted
+            }
+        }
+
+        return task // Caso não entre no if, retorne sem fazer alterações
+    })
+
+    setTasks(editedCompletedTask)
 
     }
 
-    /*const [task, setTask] = useState(Boolean)
+    const completedTasks = tasks.filter(task => task.isCompleted).length
 
-    function TaskFinish (checked: HTMLInputElement){
-        const setmyTask = checked;
-        setTask(setmyTask)
-        const contarTarefas = new Array(setTask.length).fill(task)
-        console.log(contarTarefas)
-        console.log(setmyTask)
-        return setmyTask
-
-    }*/
-
-    /*const [task, setTask] = useState([Boolean])
-    function TaskFinish (event: HTMLInputElement){
-        const setmyTask = event
-        setTask(setmyTask)
-       
-        
-        console.log(setTask)
-        return setTask
-
-    }*/
-   
+     
 
    return( 
         <div>
@@ -98,12 +97,12 @@ export function Tasker(){
                 
                     <div className={ style.taskscreateds } >
                     Tarefas criadas
-                    <div className={ style.countertasks }>{commentsForCount}</div>
+                    <div className={ style.countertasks }>{tasksForCount}</div>
                     </div>
 
                     <div  className={ style.tasksendeds }>
                     Concluídas
-                    <div className={ style.countertasksends }>{task}</div>                
+                    <div className={ style.countertasksends }>{completedTasks}</div>                
                     </div>
 
                
@@ -113,13 +112,15 @@ export function Tasker(){
         
 
         <div className={ style.tasklist }>
-        {comments.map(comment =>{
+        {tasks.map(task =>{
             return(
             <TaskList
-            key={comment}
-            content={comment}
+            key={task.id}
+            id={task.id}
+            content={task.title}
             onDeleteComment={ deleteComment }
-            isComplete={TaskFinish}
+            isCompleted={task.isCompleted}
+            handleChangeCompletion={TaskFinish}
             />
             
             )

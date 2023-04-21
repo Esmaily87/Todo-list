@@ -6,34 +6,29 @@ import { useState } from 'react';
 
 interface TaskProps {
     key: string;
+    id: string;
     content: string;
     onDeleteComment: (comment: string) => void;
-    isComplete: (task: Boolean) => Boolean;
+    isCompleted: boolean;
+    handleChangeCompletion: (id: string) => void;
   
 }
 
-export function TaskList({content, onDeleteComment, isComplete}:TaskProps){
+export function TaskList({id, content, onDeleteComment, isCompleted, handleChangeCompletion}:TaskProps){
     
     function handleDeleteComment(){
-        onDeleteComment(content);
+        onDeleteComment(id);
     }
 
     
     
-    const [isChecked, setIsChecked] = useState(Boolean);
+    //const [isChecked, setIsChecked] = useState(Boolean);
     
     
 
     function handleOnChange(){
        
-       setIsChecked(!isChecked);
-
-       isComplete(isChecked)
-       
-       //console.log(isChecked)
-
-       
-       
+       handleChangeCompletion(id)
       
        
     }
@@ -56,7 +51,7 @@ export function TaskList({content, onDeleteComment, isComplete}:TaskProps){
                 <input 
                 type="checkbox" 
                 className={style.checkmark}
-                checked={isChecked}
+                checked={isCompleted}
                 onChange={handleOnChange}
                 
                 />

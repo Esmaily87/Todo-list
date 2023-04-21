@@ -1,7 +1,7 @@
-span:first-child {
+/*span:first-child {
     display: none;
 
-}
+}*/
 
 span{
     display: flex;
