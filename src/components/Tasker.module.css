@@ -1,3 +1,8 @@
+.corpo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .tasker{
     display: flex;
     flex-direction: row;
@@ -7,9 +12,10 @@
     position: absolute;
     width: 736px;
     height: 54px;
-    left: calc(50% - 736px/2);
+    
     top: 173px;
     border-radius: 8px;
+   
 
 }
 

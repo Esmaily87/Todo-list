@@ -6,64 +6,57 @@ import { FormEvent, useState, ChangeEvent, InvalidEvent, HTMLInputTypeAttribute 
 
 
 export function Tasker(){
-    const initialData = [
+
+     const initialData = [
         {
-            id: 'id-aleatorio1',
-            title: 'Task 1',
-            isCompleted: false // Essa não está concluída
+            id: '',
+            title: '',
+            isCompleted: false
         },
         
     ]
 
     const [tasks, setTasks ]= useState(initialData)
     
-    const [newCommentText, setNewCommentText] = useState('')
+    const [newTaskText, setNewTaskText] = useState('')
   
-    function handleCreateNewComment(event: FormEvent){
+    function handleCreateNewTask(event: FormEvent){
         event.preventDefault()
         setTasks(tasks => [...tasks, {
-            id: Math.random().toString(), // Gera um ID aleatório de uma forma não muito recomendada, mas vai servir por enquanto
-            isCompleted: false, // Inicia o isCompleted como false
-            title: newCommentText
+            id: Math.random().toString(), // usar UUID aqui depois
+            isCompleted: false, // valor inicial
+            title: newTaskText
         }]);
-        setNewCommentText('');
+        setNewTaskText('');
        
                
     }
 
-    function handleNewCommentChange(event: ChangeEvent<HTMLInputElement> ) {
+    function handleNewTaskChange(event: ChangeEvent<HTMLInputElement> ) {
         event.target.setCustomValidity('');
-       setNewCommentText(event.target.value);
+       setNewTaskText(event.target.value);
       
     }
 
-    function deleteComment(id: string) {
+    function deleteTask(id: string) {
         const tasksWithOutDeletedOne = tasks.filter( task => {
             return task.id !== id;
         })
          setTasks(tasksWithOutDeletedOne);
     }
 
-    
-   
-    const tasksForCount = tasks.length
-    
-
-    const [task, setTask] = useState("")
+    const tasksForCount = tasks.length-1
     
     function TaskFinish (id: string){
-         // Faz um map de todas as tasks, para criar um novo array
     const editedCompletedTask = tasks.map(task => {
-        // Caso o ID da task seja igual ao id clicado:
         if (task.id === id) {
-            // Retorna todos os itens da task, mas invertemos o valor do isCompleted
             return {
                 ...task,
                 isCompleted: !task.isCompleted
             }
         }
 
-        return task // Caso não entre no if, retorne sem fazer alterações
+        return task 
     })
 
     setTasks(editedCompletedTask)
@@ -72,17 +65,28 @@ export function Tasker(){
 
     const completedTasks = tasks.filter(task => task.isCompleted).length
 
+   const lazylevel =  (tasks.length-1) - tasks.filter(task => task.isCompleted).length
+    
+
+    
+
+    
+
+
+
+    
+
      
 
    return( 
-        <div>
+        <div className={style.corpo}>
             
-            <form onSubmit={ handleCreateNewComment } className={style.tasker}>
+            <form onSubmit={ handleCreateNewTask } className={style.tasker}>
             <input type='text'
-            name="comment" 
+            name="task" 
             placeholder="Adicione uma nova tarefa"
-            value={newCommentText}
-            onChange={handleNewCommentChange}
+            value={newTaskText}
+            onChange={handleNewTaskChange}
             required
             />
             <button className={style.button}   type="submit">
@@ -101,8 +105,14 @@ export function Tasker(){
                     </div>
 
                     <div  className={ style.tasksendeds }>
+                    Preguiça Level  
+                    <div className={ style.countertasksends }>
+                        {lazylevel}/{tasksForCount}</div>        
+                    </div>
+
+                    <div  className={ style.tasksendeds }>
                     Concluídas
-                    <div className={ style.countertasksends }>{completedTasks}</div>                
+                    <div className={ style.countertasksends }>{completedTasks}</div>        
                     </div>
 
                
@@ -118,9 +128,10 @@ export function Tasker(){
             key={task.id}
             id={task.id}
             content={task.title}
-            onDeleteComment={ deleteComment }
+            onDeleteTask={ deleteTask }
             isCompleted={task.isCompleted}
             handleChangeCompletion={TaskFinish}
+            handleLineThrough={TaskFinish}
             />
             
             )
