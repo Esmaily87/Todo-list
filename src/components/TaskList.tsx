@@ -1,7 +1,6 @@
 import style from './TaskList.module.css'
-import { Check, ListChecks, Trash, TrashSimple } from 'phosphor-react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { Trash} from 'phosphor-react';
+
 
 
 
@@ -30,13 +29,10 @@ export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCo
 
        handleLineThrough(id)
        
-       if(isCompleted == false){
-        document.documentElement.style.setProperty('--taxado', 'line-through');
-         }else if(isCompleted ==true){
-        document.documentElement.style.setProperty('--taxado', 'none');
-         }
-
+       
     }
+
+    const lineClass = `${isCompleted ? 'checked'  : ''}`
 
 
     return (
@@ -59,7 +55,7 @@ export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCo
                 </label>
 
                              
-                <p className={style.cortar}>{ content }</p>
+                <p /*id={style.cortar} className={style.cortar}*/ className={lineClass}>{ content }</p>
                 <div className={style.trash}>
                  <button onClick={handleDeleteComment} title="Deletar comentário" >
                         <Trash size={24} />

@@ -7,22 +7,27 @@ import { FormEvent, useState, ChangeEvent, InvalidEvent, HTMLInputTypeAttribute 
 
 export function Tasker(){
 
-     const initialData = [
+     /*const initialData = [
         {
             id: '',
             title: '',
             isCompleted: false
-        },
+        }
         
-    ]
+    ]*/
+    interface Task {
+        id: string;
+        title: string;
+        isCompleted: boolean;
+      }
 
-    const [tasks, setTasks ]= useState(initialData)
+    const [tasks, setTasks ]= useState<Task[]>([])
     
     const [newTaskText, setNewTaskText] = useState('')
   
     function handleCreateNewTask(event: FormEvent){
         event.preventDefault()
-        setTasks(tasks => [...tasks, {
+        setTasks(tasks => [...tasks!, {
             id: Math.random().toString(), // usar UUID aqui depois
             isCompleted: false, // valor inicial
             title: newTaskText
@@ -45,7 +50,7 @@ export function Tasker(){
          setTasks(tasksWithOutDeletedOne);
     }
 
-    const tasksForCount = tasks.length-1
+    const tasksForCount = tasks.length
     
     function TaskFinish (id: string){
     const editedCompletedTask = tasks.map(task => {
@@ -65,7 +70,7 @@ export function Tasker(){
 
     const completedTasks = tasks.filter(task => task.isCompleted).length
 
-   const lazylevel =  (tasks.length-1) - tasks.filter(task => task.isCompleted).length
+   const lazylevel =  (tasks.length) - tasks.filter(task => task.isCompleted).length
     
 
     

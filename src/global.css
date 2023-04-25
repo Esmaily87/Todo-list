@@ -4,6 +4,9 @@
     box-sizing: border-box;
     
 }
+.checked{
+    text-decoration: line-through;
+}
 body{
     background: var(--grey-600);
     color: var(--grey-300);
