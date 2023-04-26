@@ -1,8 +1,9 @@
 .cortar{
   text-decoration: var(--taxado);
 }
-#cortar{
-  text-decoration: var(--taxado);
+.checked{
+  text-decoration: line-through;
+  color: var(--grey-300);
 }
 
 

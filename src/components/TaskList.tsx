@@ -32,7 +32,7 @@ export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCo
        
     }
 
-    const lineClass = `${isCompleted ? 'checked'  : ''}`
+    const lineClass = `${isCompleted ? style.checked  : ''}`
 
 
     return (
