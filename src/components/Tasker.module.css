@@ -73,7 +73,8 @@ flex-grow: 1;
     align-items: center;
     padding: 1rem;
     gap: 0.5rem;
-    width: 90px;
+    max-width: 90px;
+    min-width:10px;
     height: 52px;
     background: #1E6F9F;
     border-radius: 8px;
@@ -185,5 +186,14 @@ flex-grow: 1;
         width: 90vw;
 
     }
+
+    .notasksActive{
+        width: 95vw;
+    }
+
+    .criarButton{
+        display: none;
+    }
+   
     
 }

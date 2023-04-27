@@ -85,7 +85,7 @@ export function Tasker(){
             required
             />
             <button className={style.button}   type="submit">
-                Criar
+                <div className={style.criarButton}>Criar</div>
                 <PlusCircle size={16}/>
                 
                 
