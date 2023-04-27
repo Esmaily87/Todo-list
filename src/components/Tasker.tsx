@@ -1,5 +1,5 @@
 import style from './Tasker.module.css'
-import { PlusCircle } from 'phosphor-react';
+import { PlusCircle, Notepad } from 'phosphor-react';
 import { TaskList } from './TaskList';
 import { FormEvent, useState, ChangeEvent, InvalidEvent, HTMLInputTypeAttribute } from 'react';
 
@@ -71,18 +71,8 @@ export function Tasker(){
     const completedTasks = tasks.filter(task => task.isCompleted).length
 
    const lazylevel =  (tasks.length) - tasks.filter(task => task.isCompleted).length
+   const noHastasks = `${tasks.length==0 ? style.notasksActive  : style.noHastasks}`
     
-
-    
-
-    
-
-
-
-    
-
-     
-
    return( 
         <div className={style.corpo}>
             
@@ -123,7 +113,13 @@ export function Tasker(){
                
 
                 </div>
+                <div className={noHastasks} >
+                <Notepad size={132} />
+                <b>Você ainda não tem tarefas listadas</b>
+                <div>crie uma agora mesmo!</div>
+                </div>
             </div>
+            
         
 
         <div className={ style.tasklist }>
