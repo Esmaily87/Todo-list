@@ -11,13 +11,13 @@ interface TaskProps {
     onDeleteTask: (comment: string) => void;
     isCompleted: boolean;
     handleChangeCompletion: (id: string) => void;
-    handleLineThrough: (id: string) => void;
+   
     
     
   
 }
 
-export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCompletion, handleLineThrough}:TaskProps){
+export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCompletion}:TaskProps){
     
     function handleDeleteComment(){
         onDeleteTask(id);
@@ -27,7 +27,7 @@ export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCo
        
        handleChangeCompletion(id);
 
-       handleLineThrough(id)
+      
        
        
     }

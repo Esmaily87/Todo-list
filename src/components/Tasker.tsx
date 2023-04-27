@@ -132,7 +132,7 @@ export function Tasker(){
             onDeleteTask={ deleteTask }
             isCompleted={task.isCompleted}
             handleChangeCompletion={TaskFinish}
-            handleLineThrough={TaskFinish}
+            
             />
             
             )
