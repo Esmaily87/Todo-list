@@ -115,8 +115,8 @@ export function Tasker(){
                 </div>
                 <div className={noHastasks} >
                 <Notepad size={132} />
-                <b>Você ainda não tem tarefas listadas</b>
-                <div>crie uma agora mesmo!</div>
+                <b>Você ainda não tem tarefas cadastradas</b>
+                <div>crie tarefas e organize seus itens a fazer</div>
                 </div>
             </div>
             
