@@ -104,7 +104,6 @@ flex-grow: 1;
     position: absolute;
     width: 736px;
     height: 287px;
-    left: calc(50% - 736px/2);
     top: 260px;
     gap:24px;
 }
