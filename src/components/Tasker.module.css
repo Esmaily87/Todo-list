@@ -194,6 +194,12 @@ flex-grow: 1;
     .criarButton{
         display: none;
     }
+
+    .tasklist{
+        
+        width: 98vw;
+        
+    }
    
     
 }

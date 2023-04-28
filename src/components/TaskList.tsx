@@ -55,7 +55,7 @@ export function TaskList({id, content, onDeleteTask, isCompleted, handleChangeCo
                 </label>
 
                              
-                <p /*id={style.cortar} className={style.cortar}*/ className={lineClass}>{ content }</p>
+                <p className={lineClass}>{ content }</p>
                 <div className={style.trash}>
                  <button onClick={handleDeleteComment} title="Deletar comentário" >
                         <Trash size={24} />
